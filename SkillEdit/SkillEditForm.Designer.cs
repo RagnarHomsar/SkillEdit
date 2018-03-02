@@ -137,6 +137,10 @@
             this.label17 = new System.Windows.Forms.Label();
             this.skillFlagsTextBox = new System.Windows.Forms.TextBox();
             this.disableBox = new System.Windows.Forms.GroupBox();
+            this.legDisableCheckBox = new System.Windows.Forms.CheckBox();
+            this.armDisableCheckBox = new System.Windows.Forms.CheckBox();
+            this.headDisableCheckBox = new System.Windows.Forms.CheckBox();
+            this.stunCheckBox = new System.Windows.Forms.CheckBox();
             this.deathRadio = new System.Windows.Forms.CheckBox();
             this.petrifyRadio = new System.Windows.Forms.CheckBox();
             this.plagueRadio = new System.Windows.Forms.CheckBox();
@@ -161,12 +165,19 @@
             this.almightyCheckBox = new System.Windows.Forms.CheckBox();
             this.penaltyCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.stunCheckBox = new System.Windows.Forms.CheckBox();
-            this.headDisableCheckBox = new System.Windows.Forms.CheckBox();
-            this.armDisableCheckBox = new System.Windows.Forms.CheckBox();
-            this.legDisableCheckBox = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.usableStateTextBox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.requirementsEditorBox = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.skill1List = new System.Windows.Forms.ComboBox();
+            this.skill1Level = new System.Windows.Forms.NumericUpDown();
+            this.skill2Level = new System.Windows.Forms.NumericUpDown();
+            this.skill2List = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.skill3Level = new System.Windows.Forms.NumericUpDown();
+            this.skill3List = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.orCheckBox = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.subheaderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subheaderSelector)).BeginInit();
@@ -182,6 +193,10 @@
             this.inflictPanel.SuspendLayout();
             this.damageTypeBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.requirementsEditorBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skill1Level)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill2Level)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill3Level)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -265,9 +280,9 @@
             // applyChangesButton
             // 
             this.applyChangesButton.Enabled = false;
-            this.applyChangesButton.Location = new System.Drawing.Point(279, 732);
+            this.applyChangesButton.Location = new System.Drawing.Point(279, 858);
             this.applyChangesButton.Name = "applyChangesButton";
-            this.applyChangesButton.Size = new System.Drawing.Size(258, 148);
+            this.applyChangesButton.Size = new System.Drawing.Size(259, 22);
             this.applyChangesButton.TabIndex = 4;
             this.applyChangesButton.Text = "Apply Changes";
             this.applyChangesButton.UseVisualStyleBackColor = true;
@@ -1359,6 +1374,50 @@
             this.disableBox.TabStop = false;
             this.disableBox.Text = "Disables";
             // 
+            // legDisableCheckBox
+            // 
+            this.legDisableCheckBox.AutoSize = true;
+            this.legDisableCheckBox.Location = new System.Drawing.Point(174, 115);
+            this.legDisableCheckBox.Name = "legDisableCheckBox";
+            this.legDisableCheckBox.Size = new System.Drawing.Size(44, 17);
+            this.legDisableCheckBox.TabIndex = 12;
+            this.legDisableCheckBox.Tag = "0x1000";
+            this.legDisableCheckBox.Text = "Leg";
+            this.legDisableCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // armDisableCheckBox
+            // 
+            this.armDisableCheckBox.AutoSize = true;
+            this.armDisableCheckBox.Location = new System.Drawing.Point(90, 115);
+            this.armDisableCheckBox.Name = "armDisableCheckBox";
+            this.armDisableCheckBox.Size = new System.Drawing.Size(44, 17);
+            this.armDisableCheckBox.TabIndex = 11;
+            this.armDisableCheckBox.Tag = "0x800";
+            this.armDisableCheckBox.Text = "Arm";
+            this.armDisableCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // headDisableCheckBox
+            // 
+            this.headDisableCheckBox.AutoSize = true;
+            this.headDisableCheckBox.Location = new System.Drawing.Point(6, 115);
+            this.headDisableCheckBox.Name = "headDisableCheckBox";
+            this.headDisableCheckBox.Size = new System.Drawing.Size(52, 17);
+            this.headDisableCheckBox.TabIndex = 10;
+            this.headDisableCheckBox.Tag = "0x400";
+            this.headDisableCheckBox.Text = "Head";
+            this.headDisableCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // stunCheckBox
+            // 
+            this.stunCheckBox.AutoSize = true;
+            this.stunCheckBox.Location = new System.Drawing.Point(90, 89);
+            this.stunCheckBox.Name = "stunCheckBox";
+            this.stunCheckBox.Size = new System.Drawing.Size(48, 17);
+            this.stunCheckBox.TabIndex = 9;
+            this.stunCheckBox.Tag = "0x200";
+            this.stunCheckBox.Text = "Stun";
+            this.stunCheckBox.UseVisualStyleBackColor = true;
+            // 
             // deathRadio
             // 
             this.deathRadio.AutoSize = true;
@@ -1638,49 +1697,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Header Editor 2: I Ran Out Of Space";
             // 
-            // stunCheckBox
+            // usableStateTextBox
             // 
-            this.stunCheckBox.AutoSize = true;
-            this.stunCheckBox.Location = new System.Drawing.Point(90, 89);
-            this.stunCheckBox.Name = "stunCheckBox";
-            this.stunCheckBox.Size = new System.Drawing.Size(48, 17);
-            this.stunCheckBox.TabIndex = 9;
-            this.stunCheckBox.Tag = "0x200";
-            this.stunCheckBox.Text = "Stun";
-            this.stunCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // headDisableCheckBox
-            // 
-            this.headDisableCheckBox.AutoSize = true;
-            this.headDisableCheckBox.Location = new System.Drawing.Point(6, 115);
-            this.headDisableCheckBox.Name = "headDisableCheckBox";
-            this.headDisableCheckBox.Size = new System.Drawing.Size(52, 17);
-            this.headDisableCheckBox.TabIndex = 10;
-            this.headDisableCheckBox.Tag = "0x400";
-            this.headDisableCheckBox.Text = "Head";
-            this.headDisableCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // armDisableCheckBox
-            // 
-            this.armDisableCheckBox.AutoSize = true;
-            this.armDisableCheckBox.Location = new System.Drawing.Point(90, 115);
-            this.armDisableCheckBox.Name = "armDisableCheckBox";
-            this.armDisableCheckBox.Size = new System.Drawing.Size(44, 17);
-            this.armDisableCheckBox.TabIndex = 11;
-            this.armDisableCheckBox.Tag = "0x800";
-            this.armDisableCheckBox.Text = "Arm";
-            this.armDisableCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // legDisableCheckBox
-            // 
-            this.legDisableCheckBox.AutoSize = true;
-            this.legDisableCheckBox.Location = new System.Drawing.Point(174, 115);
-            this.legDisableCheckBox.Name = "legDisableCheckBox";
-            this.legDisableCheckBox.Size = new System.Drawing.Size(44, 17);
-            this.legDisableCheckBox.TabIndex = 12;
-            this.legDisableCheckBox.Tag = "0x1000";
-            this.legDisableCheckBox.Text = "Leg";
-            this.legDisableCheckBox.UseVisualStyleBackColor = true;
+            this.usableStateTextBox.Location = new System.Drawing.Point(107, 323);
+            this.usableStateTextBox.Name = "usableStateTextBox";
+            this.usableStateTextBox.Size = new System.Drawing.Size(146, 20);
+            this.usableStateTextBox.TabIndex = 22;
             // 
             // label19
             // 
@@ -1691,18 +1713,135 @@
             this.label19.TabIndex = 21;
             this.label19.Text = "Usable State (hex)";
             // 
-            // usableStateTextBox
+            // requirementsEditorBox
             // 
-            this.usableStateTextBox.Location = new System.Drawing.Point(107, 323);
-            this.usableStateTextBox.Name = "usableStateTextBox";
-            this.usableStateTextBox.Size = new System.Drawing.Size(146, 20);
-            this.usableStateTextBox.TabIndex = 22;
+            this.requirementsEditorBox.Controls.Add(this.orCheckBox);
+            this.requirementsEditorBox.Controls.Add(this.skill3Level);
+            this.requirementsEditorBox.Controls.Add(this.skill3List);
+            this.requirementsEditorBox.Controls.Add(this.label22);
+            this.requirementsEditorBox.Controls.Add(this.skill2Level);
+            this.requirementsEditorBox.Controls.Add(this.skill2List);
+            this.requirementsEditorBox.Controls.Add(this.label21);
+            this.requirementsEditorBox.Controls.Add(this.skill1Level);
+            this.requirementsEditorBox.Controls.Add(this.skill1List);
+            this.requirementsEditorBox.Controls.Add(this.label20);
+            this.requirementsEditorBox.Enabled = false;
+            this.requirementsEditorBox.Location = new System.Drawing.Point(279, 732);
+            this.requirementsEditorBox.Name = "requirementsEditorBox";
+            this.requirementsEditorBox.Size = new System.Drawing.Size(259, 120);
+            this.requirementsEditorBox.TabIndex = 8;
+            this.requirementsEditorBox.TabStop = false;
+            this.requirementsEditorBox.Text = "Requirements Editor";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 23);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 13);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Skill 1";
+            // 
+            // skill1List
+            // 
+            this.skill1List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skill1List.FormattingEnabled = true;
+            this.skill1List.Location = new System.Drawing.Point(49, 20);
+            this.skill1List.Name = "skill1List";
+            this.skill1List.Size = new System.Drawing.Size(165, 21);
+            this.skill1List.TabIndex = 1;
+            // 
+            // skill1Level
+            // 
+            this.skill1Level.Location = new System.Drawing.Point(220, 20);
+            this.skill1Level.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.skill1Level.Name = "skill1Level";
+            this.skill1Level.ReadOnly = true;
+            this.skill1Level.Size = new System.Drawing.Size(33, 20);
+            this.skill1Level.TabIndex = 2;
+            // 
+            // skill2Level
+            // 
+            this.skill2Level.Location = new System.Drawing.Point(220, 47);
+            this.skill2Level.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.skill2Level.Name = "skill2Level";
+            this.skill2Level.ReadOnly = true;
+            this.skill2Level.Size = new System.Drawing.Size(33, 20);
+            this.skill2Level.TabIndex = 5;
+            // 
+            // skill2List
+            // 
+            this.skill2List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skill2List.FormattingEnabled = true;
+            this.skill2List.Location = new System.Drawing.Point(49, 47);
+            this.skill2List.Name = "skill2List";
+            this.skill2List.Size = new System.Drawing.Size(165, 21);
+            this.skill2List.TabIndex = 4;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 50);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(35, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "Skill 2";
+            // 
+            // skill3Level
+            // 
+            this.skill3Level.Location = new System.Drawing.Point(220, 74);
+            this.skill3Level.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.skill3Level.Name = "skill3Level";
+            this.skill3Level.ReadOnly = true;
+            this.skill3Level.Size = new System.Drawing.Size(33, 20);
+            this.skill3Level.TabIndex = 8;
+            // 
+            // skill3List
+            // 
+            this.skill3List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skill3List.FormattingEnabled = true;
+            this.skill3List.Location = new System.Drawing.Point(49, 74);
+            this.skill3List.Name = "skill3List";
+            this.skill3List.Size = new System.Drawing.Size(165, 21);
+            this.skill3List.TabIndex = 7;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 77);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(35, 13);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Skill 3";
+            // 
+            // orCheckBox
+            // 
+            this.orCheckBox.AutoSize = true;
+            this.orCheckBox.Location = new System.Drawing.Point(64, 99);
+            this.orCheckBox.Name = "orCheckBox";
+            this.orCheckBox.Size = new System.Drawing.Size(128, 17);
+            this.orCheckBox.TabIndex = 9;
+            this.orCheckBox.Text = "Requirements are OR";
+            this.orCheckBox.UseVisualStyleBackColor = true;
             // 
             // SkillEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 892);
+            this.Controls.Add(this.requirementsEditorBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.headerGroupBox);
             this.Controls.Add(this.subheaderGroupBox);
@@ -1744,6 +1883,11 @@
             this.damageTypeBox.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.requirementsEditorBox.ResumeLayout(false);
+            this.requirementsEditorBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skill1Level)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill2Level)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill3Level)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1889,6 +2033,17 @@
         private System.Windows.Forms.CheckBox armDisableCheckBox;
         private System.Windows.Forms.TextBox usableStateTextBox;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox requirementsEditorBox;
+        private System.Windows.Forms.NumericUpDown skill1Level;
+        private System.Windows.Forms.ComboBox skill1List;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox orCheckBox;
+        private System.Windows.Forms.NumericUpDown skill3Level;
+        private System.Windows.Forms.ComboBox skill3List;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown skill2Level;
+        private System.Windows.Forms.ComboBox skill2List;
+        private System.Windows.Forms.Label label21;
     }
 }
 

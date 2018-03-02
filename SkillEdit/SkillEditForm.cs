@@ -10,6 +10,7 @@ namespace SkillEdit
     {
         SkillTable st;
         SkillNameTable snt;
+        RequirementsTable rt;
         EO3Skill selectedSkill;
 
         public SkillEditForm()
@@ -42,6 +43,13 @@ namespace SkillEdit
             {
                 st = new SkillTable(openTableDialog.FileName);
                 snt = new SkillNameTable(openTableDialog.FileName.Replace("skilltable", "skillnametable"));
+
+                // bad kludge. very bad kludge. who cares tho
+                if (openTableDialog.FileName.Contains("player"))
+                {
+                    rt = new RequirementsTable(openTableDialog.FileName.Replace("skilltable", "skilllearntable"));
+                }
+
                 InitSkillEditor(openTableDialog.FileName, snt);
             }
         }
@@ -56,6 +64,22 @@ namespace SkillEdit
                     "0x" + i.ToString("X3") + ": " +
                     snt.sjisStrings[i].GetAscii()
                 );
+            }
+
+            if (rt != null)
+            {
+                foreach (ComboBox skillList in requirementsEditorBox.Controls.OfType<ComboBox>())
+                {
+                    skillList.Items.Clear();
+
+                    for (int i = 0; i < snt.sjisStrings.Length; i++)
+                    {
+                        skillList.Items.Add(
+                            "0x" + i.ToString("X3") + ": " +
+                            snt.sjisStrings[i].GetAscii()
+                        );
+                    }
+                }
             }
 
             skillList.SelectedIndex = 0;
@@ -95,6 +119,13 @@ namespace SkillEdit
             var lastTableContents = File.ReadAllLines("last_table.txt");
             st = new SkillTable(lastTableContents[0]);
             snt = new SkillNameTable(lastTableContents[0].Replace("skilltable", "skillnametable"));
+
+            // bad kludge. very bad kludge. who cares tho
+            if (lastTableContents[0].Contains("player"))
+            {
+                rt = new RequirementsTable(lastTableContents[0].Replace("skilltable", "skilllearntable"));
+            }
+
             InitSkillEditor(lastTableContents[0], snt);
         }
 
@@ -241,6 +272,15 @@ namespace SkillEdit
             repurposedTextBox.Text = selectedSkill.Repurposed.ToString("x");
             
             UpdateSubheaderInfo(null, null);
+
+            // set requirements
+            for (int i = 0; i < 3; i++)
+            {
+                ComboBox listToSet = requirementsEditorBox.Controls.OfType<ComboBox>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "List");
+                NumericUpDown levelToSet = requirementsEditorBox.Controls.OfType<NumericUpDown>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "Level");
+                listToSet.SelectedIndex = rt.Skills[skillId].requiredSkills[i].Item1;
+                levelToSet.Value = rt.Skills[skillId].requiredSkills[i].Item2;
+            }
         }
 
         private void UpdateSubheaderInfo(object sender, EventArgs e)
@@ -359,6 +399,26 @@ namespace SkillEdit
             {
                 var textBoxContents = subheaderGroupBox.Controls.OfType<TextBox>().FirstOrDefault(x => x.Name == "level" + (i + 1).ToString()).Text;
                 selectedSkill.SubheaderData[subheaderId].levelValues[i] = int.Parse(textBoxContents);
+            }
+            
+            for (int i = 0; i < SkillRequirements.NUMBER_OF_REQUIREMENTS; i++)
+            {
+                var relevantList = requirementsEditorBox.Controls.OfType<ComboBox>().FirstOrDefault(x => x.Name == "skill" + (i + 1).ToString() + "List");
+                var relevantSelector = requirementsEditorBox.Controls.OfType<NumericUpDown>().FirstOrDefault(x => x.Name == "skill" + (i + 1).ToString() + "Level");
+                var reqSkillId = (byte) relevantList.SelectedIndex;
+                var reqSkillLevel = byte.Parse(relevantSelector.Text);
+
+                rt.Skills[skillId].requiredSkills[i] = new Tuple<byte, byte>(reqSkillId, reqSkillLevel);
+
+                if (orCheckBox.Checked == true)
+                {
+                    rt.Skills[skillId].orRequirements = 1;
+                }
+
+                else
+                {
+                    rt.Skills[skillId].orRequirements = 0;
+                }
             }
 
             // do this at the end, or else things get updated prematurely!
@@ -507,7 +567,8 @@ namespace SkillEdit
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
                 st.WriteToFile(saveDialog.FileName);
-                snt.Write(saveDialog.FileName.Replace(".", "nametable."));
+                snt.Write(saveDialog.FileName.Replace("table", "nametable"));
+                rt.WriteToFile(saveDialog.FileName.Replace("table", "learntable"));
             }
         }
     }

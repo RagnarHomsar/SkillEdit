@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EO3Skill.cs" />
+    <Compile Include="RequirementsTable.cs" />
     <Compile Include="SJISString.cs" />
     <Compile Include="SkillEditForm.cs">
       <SubType>Form</SubType>
