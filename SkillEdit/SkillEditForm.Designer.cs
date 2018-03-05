@@ -168,16 +168,16 @@
             this.usableStateTextBox = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.requirementsEditorBox = new System.Windows.Forms.GroupBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.skill1List = new System.Windows.Forms.ComboBox();
-            this.skill1Level = new System.Windows.Forms.NumericUpDown();
-            this.skill2Level = new System.Windows.Forms.NumericUpDown();
-            this.skill2List = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.orCheckBox = new System.Windows.Forms.CheckBox();
             this.skill3Level = new System.Windows.Forms.NumericUpDown();
             this.skill3List = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.orCheckBox = new System.Windows.Forms.CheckBox();
+            this.skill2Level = new System.Windows.Forms.NumericUpDown();
+            this.skill2List = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.skill1Level = new System.Windows.Forms.NumericUpDown();
+            this.skill1List = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.subheaderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subheaderSelector)).BeginInit();
@@ -194,9 +194,9 @@
             this.damageTypeBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.requirementsEditorBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.skill1Level)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skill2Level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skill3Level)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill2Level)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill1Level)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1008,10 +1008,10 @@
             this.splash1Radio.AutoSize = true;
             this.splash1Radio.Location = new System.Drawing.Point(6, 92);
             this.splash1Radio.Name = "splash1Radio";
-            this.splash1Radio.Size = new System.Drawing.Size(93, 17);
+            this.splash1Radio.Size = new System.Drawing.Size(132, 17);
             this.splash1Radio.TabIndex = 6;
-            this.splash1Radio.Tag = "0xC";
-            this.splash1Radio.Text = "Splash Type 1";
+            this.splash1Radio.Tag = "0xB";
+            this.splash1Radio.Text = "Single Target, Not Self";
             this.splash1Radio.UseVisualStyleBackColor = true;
             // 
             // splash2Radio
@@ -1733,67 +1733,15 @@
             this.requirementsEditorBox.TabStop = false;
             this.requirementsEditorBox.Text = "Requirements Editor";
             // 
-            // label20
+            // orCheckBox
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 23);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "Skill 1";
-            // 
-            // skill1List
-            // 
-            this.skill1List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.skill1List.FormattingEnabled = true;
-            this.skill1List.Location = new System.Drawing.Point(49, 20);
-            this.skill1List.Name = "skill1List";
-            this.skill1List.Size = new System.Drawing.Size(165, 21);
-            this.skill1List.TabIndex = 1;
-            // 
-            // skill1Level
-            // 
-            this.skill1Level.Location = new System.Drawing.Point(220, 20);
-            this.skill1Level.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.skill1Level.Name = "skill1Level";
-            this.skill1Level.ReadOnly = true;
-            this.skill1Level.Size = new System.Drawing.Size(33, 20);
-            this.skill1Level.TabIndex = 2;
-            // 
-            // skill2Level
-            // 
-            this.skill2Level.Location = new System.Drawing.Point(220, 47);
-            this.skill2Level.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.skill2Level.Name = "skill2Level";
-            this.skill2Level.ReadOnly = true;
-            this.skill2Level.Size = new System.Drawing.Size(33, 20);
-            this.skill2Level.TabIndex = 5;
-            // 
-            // skill2List
-            // 
-            this.skill2List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.skill2List.FormattingEnabled = true;
-            this.skill2List.Location = new System.Drawing.Point(49, 47);
-            this.skill2List.Name = "skill2List";
-            this.skill2List.Size = new System.Drawing.Size(165, 21);
-            this.skill2List.TabIndex = 4;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 50);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(35, 13);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "Skill 2";
+            this.orCheckBox.AutoSize = true;
+            this.orCheckBox.Location = new System.Drawing.Point(64, 99);
+            this.orCheckBox.Name = "orCheckBox";
+            this.orCheckBox.Size = new System.Drawing.Size(128, 17);
+            this.orCheckBox.TabIndex = 9;
+            this.orCheckBox.Text = "Requirements are OR";
+            this.orCheckBox.UseVisualStyleBackColor = true;
             // 
             // skill3Level
             // 
@@ -1826,15 +1774,67 @@
             this.label22.TabIndex = 6;
             this.label22.Text = "Skill 3";
             // 
-            // orCheckBox
+            // skill2Level
             // 
-            this.orCheckBox.AutoSize = true;
-            this.orCheckBox.Location = new System.Drawing.Point(64, 99);
-            this.orCheckBox.Name = "orCheckBox";
-            this.orCheckBox.Size = new System.Drawing.Size(128, 17);
-            this.orCheckBox.TabIndex = 9;
-            this.orCheckBox.Text = "Requirements are OR";
-            this.orCheckBox.UseVisualStyleBackColor = true;
+            this.skill2Level.Location = new System.Drawing.Point(220, 47);
+            this.skill2Level.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.skill2Level.Name = "skill2Level";
+            this.skill2Level.ReadOnly = true;
+            this.skill2Level.Size = new System.Drawing.Size(33, 20);
+            this.skill2Level.TabIndex = 5;
+            // 
+            // skill2List
+            // 
+            this.skill2List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skill2List.FormattingEnabled = true;
+            this.skill2List.Location = new System.Drawing.Point(49, 47);
+            this.skill2List.Name = "skill2List";
+            this.skill2List.Size = new System.Drawing.Size(165, 21);
+            this.skill2List.TabIndex = 4;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 50);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(35, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "Skill 2";
+            // 
+            // skill1Level
+            // 
+            this.skill1Level.Location = new System.Drawing.Point(220, 20);
+            this.skill1Level.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.skill1Level.Name = "skill1Level";
+            this.skill1Level.ReadOnly = true;
+            this.skill1Level.Size = new System.Drawing.Size(33, 20);
+            this.skill1Level.TabIndex = 2;
+            // 
+            // skill1List
+            // 
+            this.skill1List.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skill1List.FormattingEnabled = true;
+            this.skill1List.Location = new System.Drawing.Point(49, 20);
+            this.skill1List.Name = "skill1List";
+            this.skill1List.Size = new System.Drawing.Size(165, 21);
+            this.skill1List.TabIndex = 1;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 23);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(35, 13);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Skill 1";
             // 
             // SkillEditForm
             // 
@@ -1885,9 +1885,9 @@
             this.groupBox2.PerformLayout();
             this.requirementsEditorBox.ResumeLayout(false);
             this.requirementsEditorBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.skill1Level)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skill2Level)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.skill3Level)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill2Level)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skill1Level)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
