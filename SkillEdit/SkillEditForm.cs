@@ -56,6 +56,9 @@ namespace SkillEdit
 
         private void InitSkillEditor(string tableName, SkillNameTable snt)
         {
+            KeyPreview = true;
+            KeyPress += ApplyOnEnter;
+
             skillList.Items.Clear();
 
             for (int i = 0; i < snt.sjisStrings.Length; i++)
@@ -93,7 +96,7 @@ namespace SkillEdit
             lastTableContents.Add(tableName);
             File.WriteAllLines("last_table.txt", lastTableContents);
 
-            foreach (Control skillEditControl in Controls)
+            foreach (Control skillEditControl in mainControlBox.Controls)
             {
                 skillEditControl.Enabled = true;
             }
@@ -569,6 +572,14 @@ namespace SkillEdit
                 st.WriteToFile(saveDialog.FileName);
                 snt.Write(saveDialog.FileName.Replace("table", "nametable"));
                 rt.WriteToFile(saveDialog.FileName.Replace("table", "learntable"));
+            }
+        }
+
+        private void ApplyOnEnter(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                applyChangesButton_Click(null, null);
             }
         }
     }
