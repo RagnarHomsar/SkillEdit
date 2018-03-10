@@ -12,6 +12,7 @@ namespace SkillEdit
         SkillNameTable snt;
         RequirementsTable rt;
         EO3Skill selectedSkill;
+        SkillCustomTable ct;
 
         public SkillEditForm()
         {
@@ -48,6 +49,7 @@ namespace SkillEdit
                 if (openTableDialog.FileName.Contains("player"))
                 {
                     rt = new RequirementsTable(openTableDialog.FileName.Replace("skilltable", "skilllearntable"));
+                    ct = new SkillCustomTable(openTableDialog.FileName.Replace("playerskilltable", "skillcustomtable"));
                 }
 
                 InitSkillEditor(openTableDialog.FileName, snt);
@@ -86,6 +88,21 @@ namespace SkillEdit
             }
 
             skillList.SelectedIndex = 0;
+
+            if (ct != null)
+            {
+                var skillStringsStart = skillList.SelectedIndex * 11;
+
+                // magic number here
+                for (int i = 0; i < 11; i++)
+                {
+                    var textBoxToModify = customBox.Controls
+                        .OfType<TextBox>()
+                        .FirstOrDefault(x => x.Name == "customText" + (i + 1).ToString());
+
+                    textBoxToModify.Text = ct.sjisStrings[skillStringsStart + i].GetAscii();
+                }
+            }
 
             if (File.Exists("last_table.txt") == false)
             {
@@ -279,10 +296,48 @@ namespace SkillEdit
             // set requirements
             for (int i = 0; i < 3; i++)
             {
-                ComboBox listToSet = requirementsEditorBox.Controls.OfType<ComboBox>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "List");
-                NumericUpDown levelToSet = requirementsEditorBox.Controls.OfType<NumericUpDown>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "Level");
-                listToSet.SelectedIndex = rt.Skills[skillId].requiredSkills[i].Item1;
-                levelToSet.Value = rt.Skills[skillId].requiredSkills[i].Item2;
+                try
+                {
+                    ComboBox listToSet = requirementsEditorBox.Controls.OfType<ComboBox>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "List");
+                    NumericUpDown levelToSet = requirementsEditorBox.Controls.OfType<NumericUpDown>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "Level");
+                    listToSet.SelectedIndex = rt.Skills[skillId].requiredSkills[i].Item1;
+                    levelToSet.Value = rt.Skills[skillId].requiredSkills[i].Item2;
+                }
+
+                // skills beyond the player skill table will throw this
+                catch (IndexOutOfRangeException)
+                {
+                    ComboBox listToSet = requirementsEditorBox.Controls.OfType<ComboBox>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "List");
+                    NumericUpDown levelToSet = requirementsEditorBox.Controls.OfType<NumericUpDown>().FirstOrDefault(x => x.Name == "skill" + (i + 1) + "Level");
+                    listToSet.SelectedIndex = 0;
+                    levelToSet.Value = 0;
+                }
+            }
+
+            // set custom text
+            if (ct != null)
+            {
+                var skillStringsStart = skillList.SelectedIndex * 11;
+
+                // magic number here
+                for (int i = 0; i < 11; i++)
+                {
+                    var nameToTest = "customText" + (i + 1).ToString();
+                    var textBoxToModify = customBox.Controls
+                        .OfType<TextBox>()
+                        .FirstOrDefault(x => x.Name == nameToTest);
+
+                    try
+                    {
+                        textBoxToModify.Text = ct.sjisStrings[skillStringsStart + i].GetAscii();
+                    }
+
+                    // skills beyond the player skill table will throw this
+                    catch (IndexOutOfRangeException)
+                    {
+                        textBoxToModify.Text = "";
+                    }
+                }
             }
         }
 
@@ -426,7 +481,20 @@ namespace SkillEdit
                 }
             }
 
+            // skill custom text updating
+            for (int i = 0; i < 11; i++)
+            {
+                var skillStringsStart = skillId * 11;
+
+                var textBoxToRead = customBox.Controls
+                    .OfType<TextBox>()
+                    .FirstOrDefault(x => x.Name == "customText" + (i + 1).ToString());
+
+                ct.ReplaceString(skillStringsStart + i, new SJISString(textBoxToRead.Text));
+            }
+
             // do this at the end, or else things get updated prematurely!
+            // except for the thing below!
             skillList.SelectedIndex = oldIndex;
         }
 
@@ -574,6 +642,7 @@ namespace SkillEdit
                 st.WriteToFile(saveDialog.FileName);
                 snt.Write(saveDialog.FileName.Replace("table", "nametable"));
                 rt.WriteToFile(saveDialog.FileName.Replace("table", "learntable"));
+                ct.Write(saveDialog.FileName.Replace("playerskilltable", "skillcustomtable"));
             }
         }
 

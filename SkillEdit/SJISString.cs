@@ -77,15 +77,32 @@ namespace SkillEdit
             { 'ｗ', 'w' },
             { 'ｘ', 'x' },
             { 'ｙ', 'y' },
-            { 'ｚ', 'z' }
+            { 'ｚ', 'z' },
+            { '↑', '^' },
+            { '↓', '?' }, // stupid kludge but i don't really care right now
+            { '；', ';' },
+            { '：', ':' },
+            { '＋', '+' },
+            { '％', '%' },
+            { '→', '>' },
+            { '／', '/' }
         };
 
         private static readonly Dictionary<ushort, char> SJIS_BYTE_LOOKUP = new Dictionary<ushort, char>()
         {
             { 0x0000, (char) 0x0 },
+            { 0x3B20, (char) 0x0 }, // i...don't really know what's up with this, but this is a sequence that's in the vanilla table exactly once, and it's causing problems
             { 0x8140, '　' },
+            { 0x8146, '：' },
+            { 0x8147, '；' },
+            { 0x815E, '／' },
             { 0x8166, '’' },
+            { 0x817B, '＋' },
             { 0x817C, '−' },
+            { 0x8193, '％' },
+            { 0x81AA, '↑' },
+            { 0x81A8, '→' },
+            { 0x81AB, '↓' },
             { 0x824F, '０' },
             { 0x8250, '１' },
             { 0x8251, '２' },
