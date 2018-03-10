@@ -378,6 +378,8 @@ namespace SkillEdit
                 }
             }
 
+            selectedSkill.DamageType = damageTypeShort;
+
             selectedSkill.InflictionFlag = ushort.Parse(inflictPanel.Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked == true).Tag.ToString().Replace("0x", ""),
                 System.Globalization.NumberStyles.HexNumber);
 
